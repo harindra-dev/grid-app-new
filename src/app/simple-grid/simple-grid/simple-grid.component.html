@@ -1,0 +1,36 @@
+<div class="grid-container">
+  <table>
+    <thead>
+      <tr>
+        @for(col of columnsData(); track col) {
+        <th [style.width]="col.width">
+          {{ col.label }}
+        </th>
+        }
+      </tr>
+    </thead>
+    <tbody>
+      @for(row of dataRows(); track row) {
+      <tr>
+        @for(col of columnsData(); track col) {
+        <td [class]="'simple-grid-column-' + col.key">
+          <ng-container
+            *ngTemplateOutlet="
+              getCellTemplate(col.key) || null;
+              context: { $implicit: row[col.key], row: row, column: col }
+            "
+          >
+          </ng-container>
+          @if(!getCellTemplate(col.key)) {
+          <ng-container>
+            {{ row[col.key] }}
+          </ng-container>
+          }
+        </td>
+        }
+      </tr>
+      }
+    </tbody>
+  </table>
+  <ng-content select="app-simple-grid-pagination"></ng-content>
+</div>
