@@ -2,10 +2,40 @@
   * {
     box-sizing: border-box;
   }
-  table {
-    border-collapse: collapse;
+
+  .table-container {
+    overflow-x: auto;
+    position: relative;
+    scroll-behavior: smooth;
+  }
+  // Sticky column styles
+  .sticky-column {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    // Add shadow for visual separation
+    box-shadow: 1px 0 0px 0px rgba(0, 0, 0, 0.25);
   }
 
+  .sticky-left {
+    border-right: 1px solid rgba(0, 0, 0, 0.25);
+  }
+
+  .sticky-right {
+    position: sticky;
+    right: 0;
+    z-index: 1;
+    box-shadow: -1px 0 0px 0px rgba(0, 0, 0, 0.25);
+    border-left: 1px solid rgba(0, 0, 0, 0.25);
+  }
+
+  table {
+    border-collapse: separate; // Change from collapse to separate
+    border-spacing: 0; // Add this to keep cells together
+    min-width: 100%;
+    width: auto;
+    border: 0px;
+  }
   thead {
     background-color: lightgrey;
     border-top: 1px solid gray;
@@ -21,13 +51,22 @@
     background-color: lightblue;
   }
 
-  th {
+  th,
+  td {
+    padding: 0.5rem 1rem;
     text-align: left;
-    padding: 0.25rem 0.5rem;
+    // width: 1px; // Forces fit-to-content
+
+    white-space: nowrap;
+    border: 0px;
+  }
+
+  th {
+    background-color: lightgrey;
   }
 
   td {
-    padding: 0.5rem 1rem;
+    background-color: white;
   }
 
   .simple-grid-header {

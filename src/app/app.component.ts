@@ -19,17 +19,22 @@ import { SimpleGridComponent } from './simple-grid/simple-grid/simple-grid.compo
 })
 export class AppComponent {
   @ViewChild('sampleGrid') sampleGrid!: SimpleGridComponent;
-  totalRows = 250000;
+  totalRows = 25000;
   dataRows: SimpleGridRow[] = [];
   columnsData: SimpleGridColumnData[] = [
     {
       field: 'roll',
       label: 'Roll Number',
-      width: 120,
+      width: 60,
     },
     {
       field: 'name',
       label: 'Name',
+      // sticky: 'left',
+    },
+    {
+      field: 'school',
+      label: 'School',
     },
     {
       field: 'english',
@@ -51,6 +56,7 @@ export class AppComponent {
       field: 'actions',
       label: '',
       sortable: false,
+      sticky: 'right',
     },
   ];
 
@@ -72,6 +78,7 @@ export class AppComponent {
         english: Math.floor(Math.random() * 100),
         maths: Math.floor(Math.random() * 100),
         science: Math.floor(Math.random() * 100),
+        school: faker.company.name(),
         total:
           Math.floor(Math.random() * 100) +
           Math.floor(Math.random() * 100) +

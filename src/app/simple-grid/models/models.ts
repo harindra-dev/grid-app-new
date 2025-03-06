@@ -23,6 +23,7 @@ export interface SimpleGridColumnData {
   cellClass?: string;
   sortable?: boolean;
   width?: number;
+  sticky?: 'right' | 'left';
 }
 
 // const pageChangeInfo: any = {
