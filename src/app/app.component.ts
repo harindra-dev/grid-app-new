@@ -1,50 +1,56 @@
-import { Component, Signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
 import {
+  IndexedSimpleGridRow,
   SimpleGridColumnData,
   SimpleGridModule,
+  SimpleGridPageCahangeEvent,
   SimpleGridRow,
 } from './simple-grid';
 import { faker } from '@faker-js/faker';
+import { SimpleGridComponent } from './simple-grid/simple-grid/simple-grid.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [SimpleGridModule],
+  imports: [SimpleGridModule, SimpleGridComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
+  @ViewChild('sampleGrid') sampleGrid!: SimpleGridComponent;
+  totalRows = 250000;
   dataRows: SimpleGridRow[] = [];
-  // Student marks columns Data for student roll number, english, maths, science, and total marks along with action to do something in last column
   columnsData: SimpleGridColumnData[] = [
     {
-      key: 'roll',
+      field: 'roll',
       label: 'Roll Number',
-      width: 60,
+      width: 120,
     },
     {
-      key: 'name',
+      field: 'name',
       label: 'Name',
     },
     {
-      key: 'english',
+      field: 'english',
       label: 'English',
     },
     {
-      key: 'maths',
+      field: 'maths',
       label: 'Maths',
     },
     {
-      key: 'science',
+      field: 'science',
       label: 'Science',
     },
     {
-      key: 'total',
+      field: 'total',
       label: 'Total',
     },
     {
-      key: 'actions',
+      field: 'actions',
       label: '',
+      sortable: false,
     },
   ];
 
@@ -52,13 +58,17 @@ export class AppComponent {
     this.dataRows = this.dataGenerator(50);
   }
 
-  dataGenerator(count: number): SimpleGridRow[] {
+  dataGenerator(count: number, offset: number = 0): SimpleGridRow[] {
     const data = [];
+
     for (let i = 0; i < count; i++) {
+      const firstName = faker.person.firstName();
+      const lastName = faker.person.lastName();
       data.push({
-        roll: i + 1,
-        firstName: faker.person.firstName(),
-        lastName: faker.person.lastName(),
+        roll: offset + i + 1,
+        firstName,
+        lastName,
+        name: `${firstName} ${lastName}`,
         english: Math.floor(Math.random() * 100),
         maths: Math.floor(Math.random() * 100),
         science: Math.floor(Math.random() * 100),
@@ -72,10 +82,30 @@ export class AppComponent {
   }
 
   editRow(row: SimpleGridRow) {
-    console.log('Edit row:', row);
+    // console.log('Edit row:', row);
   }
 
   deleteRow(row: SimpleGridRow) {
-    console.log('Delete row:', row);
+    // console.log('Delete row:', row);
+  }
+
+  handlePageChange(event: SimpleGridPageCahangeEvent) {
+    // console.log('Page change event:', event, this.sampleGrid);
+    if (event.isLastPage && event.shouldFetchNextRows) {
+      this.dataRows = this.dataGenerator(this.totalRows);
+      return;
+    }
+    if (event.shouldFetchNextRows) {
+      this.sampleGrid.appendDataRows(
+        this.dataGenerator(
+          event.pageSize >= 50 ? 100 : 50,
+          event.dataRowsInSource
+        )
+      );
+    }
+  }
+
+  handleSelectionChange(slectedRows: IndexedSimpleGridRow[]) {
+    console.log('Selection change event:', slectedRows.length);
   }
 }

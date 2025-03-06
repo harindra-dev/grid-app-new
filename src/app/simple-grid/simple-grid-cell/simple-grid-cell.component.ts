@@ -1,5 +1,14 @@
 import { CommonModule } from '@angular/common';
-import { Component, ContentChild, input, TemplateRef } from '@angular/core';
+import {
+  Component,
+  ContentChild,
+  input,
+  TemplateRef,
+  DoCheck,
+  ChangeDetectionStrategy,
+  AfterViewChecked,
+  ChangeDetectorRef,
+} from '@angular/core';
 
 @Component({
   selector: 'app-simple-grid-cell',
@@ -10,5 +19,6 @@ import { Component, ContentChild, input, TemplateRef } from '@angular/core';
 })
 export class SimpleGridCellComponent {
   column = input.required<string>();
+
   @ContentChild(TemplateRef) template!: TemplateRef<any>;
 }

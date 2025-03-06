@@ -1,30 +1,100 @@
 <div class="grid-container">
-  <table>
+  <div class="simple-grid-header">
+    @if(gridTitle()) {
+    <div class="grid-title">{{ gridTitle() }}</div>
+    } @if(isFilterEnabled()) {
+    <div class="filter-place-holder">
+      <app-simple-grid-filter
+        [value]="filterValue()"
+        (onFilterValueChange)="handleFilterInputFieldChange($event)"
+      />
+    </div>
+    }
+  </div>
+  <table width="100%">
     <thead>
       <tr>
-        @for(col of columnsData(); track col) {
-        <th [style.width]="col.width">
+        @if(enableSelection()) {
+        <th>
+          <mat-checkbox
+            class="example-margin"
+            [checked]="allDataRowsSelected()"
+            [indeterminate]="
+              !allDataRowsSelected() && selectedDataRowsCount() >= 1
+            "
+            (change)="handleAllRowsSelectionToggle()"
+          ></mat-checkbox>
+        </th>
+        } @for(col of columnsData(); track col) {
+        <th
+          [style.width]="col.width ? col.width + 'px' : 'auto'"
+          [class.sorting-enabled]="sortingRules()?.field == col.field"
+          [class.sort-ascending]="sortingRules()?.direction == 'asc'"
+          [class.sort-descending]="sortingRules()?.direction == 'desc'"
+          (click)="setSortingRules(col.field)"
+        >
           {{ col.label }}
+          @if (sortingRules()?.field == col.field) { @if(
+          sortingRules()?.direction == 'asc') {
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-arrow-down-short"
+            viewBox="0 0 16 16"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M8 4a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5A.5.5 0 0 1 8 4"
+            />
+          </svg>
+          } @if( sortingRules()?.direction == 'desc') {
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-arrow-up-short"
+            viewBox="0 0 16 16"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M8 12a.5.5 0 0 0 .5-.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 .5.5"
+            />
+          </svg>
+          }}
         </th>
         }
       </tr>
     </thead>
     <tbody>
-      @for(row of dataRows(); track row) {
+      @for(row of renderedDataRows(); track row._ruId) {
       <tr>
-        @for(col of columnsData(); track col) {
-        <td [class]="'simple-grid-column-' + col.key">
-          <ng-container
-            *ngTemplateOutlet="
-              getCellTemplate(col.key) || null;
-              context: { $implicit: row[col.key], row: row, column: col }
-            "
-          >
-          </ng-container>
-          @if(!getCellTemplate(col.key)) {
+        @if(enableSelection()) {
+        <th>
+          <mat-checkbox
+            class="example-margin"
+            [checked]="selectedDataRowIds().includes(row._ruId)"
+            (change)="handleIndividualRowSelectionToggle(row._ruId)"
+          ></mat-checkbox>
+        </th>
+        } @for(col of columnsData(); track col) {
+        <td [class]="'simple-grid-column-' + col.field">
+          @if(!getCellTemplate(col.field)) {
           <ng-container>
-            {{ row[col.key] }}
+            {{ row[col.field] }}
           </ng-container>
+          } @else {
+          <app-simple-grid-cell column="col.field">
+            <ng-container
+              *ngTemplateOutlet="
+                getCellTemplate(col.field) || null;
+                context: { $implicit: row[col.field], row: row, column: col }
+              "
+            >
+            </ng-container>
+          </app-simple-grid-cell>
           }
         </td>
         }
@@ -32,5 +102,10 @@
       }
     </tbody>
   </table>
+  @if(this.filterValue() && !this.filteredDataRows().length) {
+  <div class="no-filtered-results-found">
+    No results found matching `{{ this.filterValue() }}`
+  </div>
+  }
   <ng-content select="app-simple-grid-pagination"></ng-content>
 </div>

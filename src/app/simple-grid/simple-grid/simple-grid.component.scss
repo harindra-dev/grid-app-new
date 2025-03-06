@@ -1,0 +1,40 @@
+.grid-container {
+  * {
+    box-sizing: border-box;
+  }
+  table {
+    border-collapse: collapse;
+  }
+
+  thead {
+    background-color: lightgrey;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+  }
+
+  tbody {
+    border-bottom: 1px solid gray;
+    margin-bottom: 0.5rem;
+  }
+
+  tr:hover {
+    background-color: lightblue;
+  }
+
+  th {
+    text-align: left;
+    padding: 0.25rem 0.5rem;
+  }
+
+  td {
+    padding: 0.5rem 1rem;
+  }
+
+  .simple-grid-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border: 0;
+    padding: 0.5rem 1rem;
+  }
+}

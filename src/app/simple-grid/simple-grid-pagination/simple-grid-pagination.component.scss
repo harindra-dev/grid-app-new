@@ -1,0 +1,13 @@
+.d-flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.pagination-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  column-gap: 0.5rem;
+  padding: 0.5rem 1rem;
+}

@@ -8,10 +8,9 @@ describe('SimpleGridComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SimpleGridComponent]
-    })
-    .compileComponents();
-    
+      imports: [SimpleGridComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(SimpleGridComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

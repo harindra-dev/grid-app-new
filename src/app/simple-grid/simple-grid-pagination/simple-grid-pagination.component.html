@@ -1,1 +1,49 @@
-<p>simple-grid-pagination works!</p>
+<div class="d-flex">
+  <div class="d-flex">
+    Items per page
+    <div class="inline-block" style="display: inline-block; width: 80px">
+      <mat-select
+        [value]="pageSize()"
+        (valueChange)="handlePageSizeChange($event)"
+      >
+        @for (page of pageSizes(); track page) {
+        <mat-option [value]="page">{{ page }}</mat-option>
+        }
+      </mat-select>
+    </div>
+    &nbsp; Showing {{ this.targetGridRef.firstRowInPage() }} -
+    {{ this.targetGridRef.lastRowInPage() }} of
+    {{ this.filterValue() ? this.filteredDataRows().length : this.totalRows() }}
+  </div>
+  <div class="d-flex pagination-buttons">
+    <button (click)="goFirstPage()">First</button>
+    <button (click)="goPrevPage()" [disabled]="currentPage() === 1">
+      prev
+    </button>
+    @if(currentPage() >= 3) {
+    <button class="set-page" (click)="goToPage(currentPage() - 2)">
+      {{ currentPage() - 2 }}
+    </button>
+    } @if(currentPage() >= 2) {
+    <button class="set-page" (click)="goToPage(currentPage() - 1)">
+      {{ currentPage() - 1 }}
+    </button>
+    }
+    <button class="set-page" disabled>{{ currentPage() }}</button>
+    @if(totalPages() - currentPage() >= 1) {
+    <button class="set-page" (click)="goToPage(currentPage() + 1)">
+      {{ currentPage() + 1 }}
+    </button>
+    } @if(totalPages() - currentPage() >= 2) {
+    <button class="set-page" (click)="goToPage(currentPage() + 2)">
+      {{ currentPage() + 2 }}
+    </button>
+    }
+    <button (click)="goNextPage()" [disabled]="currentPage() === totalPages()">
+      next
+    </button>
+    <button (click)="goLastPage()" [disabled]="totalPages() === currentPage()">
+      Last
+    </button>
+  </div>
+</div>

@@ -1,19 +1,23 @@
 <app-simple-grid
   [columnsData]="columnsData"
   [dataRows]="dataRows"
-  [pageSize]="10"
-  [totalItems]="1000"
+  [pageSize]="25"
+  [totalRows]="totalRows"
+  gridTitle="Students Results"
+  [isFilterEnabled]="true"
+  (pageChange)="handlePageChange($event)"
+  [prefetchNextPagerequired]="true"
+  [enableSelection]="true"
+  (selectionChange)="handleSelectionChange($event)"
+  #sampleGrid
 >
-  <app-simple-grid-cell column="name">
-    <ng-template let-value let-row="row" let-column="column">
-      {{ row.firstName }} {{ row.lastName }}
-    </ng-template>
-  </app-simple-grid-cell>
   <app-simple-grid-cell column="actions">
     <ng-template let-value let-row="row" let-column="column">
       <button (click)="editRow(row)">Edit</button>
       <button (click)="deleteRow(row)">Delete</button>
     </ng-template>
   </app-simple-grid-cell>
-  <app-simple-grid-pagination></app-simple-grid-pagination>
+  <app-simple-grid-pagination
+    [targetGridRef]="sampleGrid"
+  ></app-simple-grid-pagination>
 </app-simple-grid>
