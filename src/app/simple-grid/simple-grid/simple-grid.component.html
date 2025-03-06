@@ -12,13 +12,13 @@
     }
   </div>
   <div class="table-container">
-    <table width="100%">
+    <table class="simple-grid-table" width="100%">
       <thead>
         <tr>
           @if(enableSelection()) {
-          <th>
+          <th class="slection-column-header-cell">
             <mat-checkbox
-              class="example-margin"
+              class=""
               [checked]="allDataRowsSelected()"
               [indeterminate]="
                 !allDataRowsSelected() && selectedDataRowsCount() >= 1
@@ -28,6 +28,9 @@
           </th>
           } @for(col of columnsData(); track col) {
           <th
+            [class]="
+              'simple-grid-column-header simple-grid-column-' + col.field
+            "
             [style.width]="col.width ? col.width + 'px' : 'auto'"
             [class.sorting-enabled]="sortingRules()?.field == col.field"
             [class.sort-ascending]="sortingRules()?.direction == 'asc'"
@@ -75,9 +78,9 @@
       </thead>
       <tbody>
         @for(row of renderedDataRows(); track row._ruId) {
-        <tr>
+        <tr class="simple-grid-row">
           @if(enableSelection()) {
-          <td>
+          <td class="simple-grid-body-cell slection-body-cell">
             <mat-checkbox
               class="example-margin"
               [checked]="selectedDataRowIds().includes(row._ruId)"
@@ -86,7 +89,7 @@
           </td>
           } @for(col of columnsData(); track col) {
           <td
-            [class]="'simple-grid-column-' + col.field"
+            [class]="'simple-grid-body-cell simple-grid-column-' + col.field"
             [class.sticky-column]="col?.sticky"
             [class.sticky-left]="col?.sticky === 'left'"
             [class.sticky-right]="col?.sticky === 'right'"
