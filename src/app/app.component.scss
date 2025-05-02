@@ -1,0 +1,40 @@
+// Every p tag inside div with example-$ will have margin bottom 0
+
+p {
+  margin-bottom: 0;
+}
+
+.example-1 {
+  position: fixed;
+  margin: 20px;
+  top: 0;
+  left: 0;
+}
+
+.example-2 {
+  position: fixed;
+  margin: 20px;
+  top: 0;
+  right: 0;
+}
+
+.example-3 {
+  position: fixed;
+  margin: 20px;
+  bottom: 0;
+  left: 0;
+}
+.example-4 {
+  position: fixed;
+  margin: 20px;
+  bottom: 0;
+  right: 0;
+}
+
+.example-5 {
+  position: fixed;
+  margin: 20px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

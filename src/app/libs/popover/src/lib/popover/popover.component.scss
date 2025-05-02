@@ -1,0 +1,75 @@
+[popovertriggerel],
+[popover-trigger-el] {
+  cursor: pointer;
+}
+
+$popover-border-color: rgba(0, 0, 0, 0.175);
+.popover-content {
+  background: #ffffff;
+  border-radius: 0.35rem;
+  padding: 10px 12px;
+  pointer-events: auto !important;
+  position: relative;
+  word-wrap: break-word;
+  border: 1.5px solid $popover-border-color;
+  margin: 10px;
+  white-space: pre-line;
+
+  .arrow {
+    position: absolute;
+    top: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 0;
+    width: 10px;
+    height: 10px;
+    box-sizing: content-box;
+    border-left: 1.5px solid $popover-border-color;
+    border-top: 1.5px solid $popover-border-color;
+    rotate: 45deg;
+    background: inherit;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  .arrow.h-start.v-center {
+    top: 50%;
+    transform: translateX(-50%);
+    rotate: 135deg;
+    left: unset;
+    right: -2px;
+  }
+
+  .arrow.h-end.v-center {
+    top: 50%;
+    transform: translateY(-50%);
+    left: -2px;
+    rotate: -45deg;
+  }
+
+  .arrow.h-center.v-top {
+    top: unset;
+    bottom: -2px;
+    rotate: -135deg;
+    left: unset;
+    right: 50%;
+  }
+
+  &.has-backdrop {
+    z-index: 1000;
+  }
+}
+
+:host ::ng-deep {
+  [popovertriggerel] {
+    cursor: pointer;
+  }
+
+  .cdk-overlay-pane {
+    pointer-events: none;
+  }
+
+  .popover-backdrop {
+    background-color: rgba(0, 0, 0, 0.32);
+  }
+}

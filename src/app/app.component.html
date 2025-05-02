@@ -26,19 +26,63 @@
 
 <div class="popover-examples">
   <div class="example-1">
-    <i class="bi bi-info-circle"></i>
-    <lib-popover>
-      <ng-template #popoverContent>
-        <div class="popover-content">
-          <h3>Popover Title</h3>
-          <p>This is the content of the popover.</p>
-        </div>
-      </ng-template>
-      <button class="btn btn-primary">Click me</button>
+    <i class="bi bi-info-circle" #ex1></i>
+    <lib-popover [triggerEl]="ex1">
+      <h5>Popover example heading</h5>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam ratione in
+        fuga ab earum harum praesentium mollitia deserunt dicta placeat, optio
+        assumenda, quo similique doloremque? Provident natus ex minima cum.
+      </p>
     </lib-popover>
   </div>
-  <div class="example-2"></div>
-  <div class="example-3"></div>
-  <div class="example-4"></div>
-  <div class="example-5"></div>
+
+  <div class="example-2">
+    <i class="bi bi-info-circle" #ex2></i>
+    <lib-popover [triggerEl]="ex2">
+      <h5>Popover example heading</h5>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam ratione in
+        fuga ab earum harum praesentium mollitia deserunt dicta placeat, optio
+        assumenda, quo similique doloremque? Provident natus ex minima cum.
+      </p>
+    </lib-popover>
+  </div>
+
+  <div class="example-3">
+    <i class="bi bi-info-circle" #ex3></i>
+    <lib-popover [triggerEl]="ex3">
+      <h5>Popover example heading</h5>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam ratione in
+        fuga ab earum harum praesentium mollitia deserunt dicta placeat, optio
+        assumenda, quo similique doloremque? Provident natus ex minima cum.
+      </p>
+    </lib-popover>
+  </div>
+
+  <div class="example-4">
+    <i class="bi bi-info-circle" #ex4></i>
+    <lib-popover [triggerEl]="ex4">
+      <h5>Popover example heading</h5>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam ratione in
+        fuga ab earum harum praesentium mollitia deserunt dicta placeat, optio
+        assumenda, quo similique doloremque? Provident natus ex minima cum.
+      </p>
+    </lib-popover>
+  </div>
+
+  <!-- example-5 -->
+  <div class="example-5">
+    <i class="bi bi-info-circle" #ex5></i>
+    <lib-popover [triggerEl]="ex5">
+      <h5>Popover example heading</h5>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam ratione in
+        fuga ab earum harum praesentium mollitia deserunt dicta placeat, optio
+        assumenda, quo similique doloremque? Provident natus ex minima cum.
+      </p>
+    </lib-popover>
+  </div>
 </div>
