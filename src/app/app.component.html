@@ -24,7 +24,7 @@
 
 <!-- <lib-ov-portal-ui></lib-ov-portal-ui> -->
 
-<div class="popover-examples">
+<!-- <div class="popover-examples">
   <div class="example-1">
     <i class="bi bi-info-circle" #ex1></i>
     <lib-popover [triggerEl]="ex1">
@@ -73,7 +73,6 @@
     </lib-popover>
   </div>
 
-  <!-- example-5 -->
   <div class="example-5">
     <i class="bi bi-info-circle" #ex5></i>
     <lib-popover [triggerEl]="ex5">
@@ -84,5 +83,80 @@
         assumenda, quo similique doloremque? Provident natus ex minima cum.
       </p>
     </lib-popover>
+  </div>
+</div> -->
+
+<div class="pro-popover-examples">
+  <h2>Professional Popover Examples</h2>
+
+  <div class="example-row">
+    <div class="example">
+      <button #trigger1>Hover Me</button>
+      <app-pro-popover [triggerEl]="trigger1">
+        <h4>Hover Popover</h4>
+        <p>This popover shows on hover and hides when mouse leaves.</p>
+      </app-pro-popover>
+    </div>
+
+    <div class="example">
+      <button #trigger2>Click Me</button>
+      <app-pro-popover
+        [triggerEl]="trigger2"
+        triggerType="click"
+        position="top"
+      >
+        <h4>Click Popover</h4>
+        <p>This popover shows on click and stays open until dismissed.</p>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit, facere
+          ullam magnam exercitationem reprehenderit nam. Nisi sunt dignissimos
+          deleniti qui a, laudantium autem incidunt eius numquam modi
+          praesentium eos veritatis.
+        </p>
+      </app-pro-popover>
+    </div>
+
+    <div class="example">
+      <button #trigger3>Hover or Click</button>
+      <app-pro-popover [triggerEl]="trigger3" position="right">
+        <h4>Combined Trigger</h4>
+        <p>Hover to show, click to pin this popover.</p>
+        <p>Click outside or press ESC to dismiss.</p>
+      </app-pro-popover>
+    </div>
+  </div>
+
+  <div class="example-row">
+    <div class="example">
+      <button #trigger4>Left Position</button>
+      <app-pro-popover [triggerEl]="trigger4" position="left">
+        <h4>Left Position</h4>
+        <p>This popover appears to the left of the trigger element.</p>
+      </app-pro-popover>
+    </div>
+
+    <div class="example">
+      <button #trigger5>No Arrow</button>
+      <app-pro-popover
+        [triggerEl]="trigger5"
+        [showArrow]="false"
+        position="bottom-left"
+      >
+        <h4>No Arrow Popover</h4>
+        <p>This popover has no arrow indicator.</p>
+      </app-pro-popover>
+    </div>
+
+    <div class="example">
+      <button #trigger6>Custom Style</button>
+      <app-pro-popover
+        [triggerEl]="trigger6"
+        panelClass="custom-popover"
+        position="top-right"
+      >
+        <h4>Custom Styled Popover</h4>
+        <p>This popover has custom styling applied to it.</p>
+      </app-pro-popover>
+    </div>
   </div>
 </div>

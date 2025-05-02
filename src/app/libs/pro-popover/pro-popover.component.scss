@@ -1,0 +1,90 @@
+.pro-popover-container {
+  background: white;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  overflow: visible;
+  position: relative;
+  box-sizing: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+
+  &.with-arrow {
+    margin: 8px;
+  }
+}
+
+.pro-popover-content {
+  padding: 12px 16px;
+  max-height: calc(100vh - 32px);
+  overflow-y: auto;
+  box-sizing: border-box;
+  max-width: inherit;
+  background-color: #ffffff;
+  position: relative;
+  z-index: 1;
+  border-radius: 4px;
+}
+
+// Arrow styling - direct positioning approach
+.arrow {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: white;
+  transform: rotate(45deg);
+  pointer-events: none;
+  z-index: 0;
+
+  // Apply consistent styling regardless of pin state
+  // No box shadow by default - use border only
+  box-shadow: none !important;
+  border: 0 solid rgba(0, 0, 0, 0.12) !important;
+
+  // Specific styling based on position - use only borders, no shadows
+  &[data-position="top"] {
+    border-top-width: 1px !important;
+    border-left-width: 1px !important;
+  }
+
+  &[data-position="bottom"] {
+    border-bottom-width: 1px !important;
+    border-right-width: 1px !important;
+  }
+
+  &[data-position="left"] {
+    border-left-width: 1px !important;
+    border-bottom-width: 1px !important;
+  }
+
+  &[data-position="right"] {
+    border-right-width: 1px !important;
+    border-top-width: 1px !important;
+  }
+}
+
+// Animation styles
+:host ::ng-deep .pro-popover-panel.pro-popover-animated {
+  transform-origin: center top;
+  animation: popoverFadeIn 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+@keyframes popoverFadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+// Backdrop style
+:host ::ng-deep .popover-transparent-backdrop {
+  background-color: transparent;
+}
+
+// ::ng-deep {
+//   .cdk-overlay-backdrop {
+//     background-color: #000000 !important;
+//   }
+// }

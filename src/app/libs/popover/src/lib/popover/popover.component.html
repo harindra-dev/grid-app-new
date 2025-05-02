@@ -7,9 +7,9 @@
     [class.m-1]="disableArrow"
     [class]="'v-' + position[1] + ' h-' + position[0]"
   >
-    @if (!disableArrow) {
-      <div [class]="'arrow ' + 'v-' + position[1] + ' h-' + position[0]"></div>
-    }
+    <!-- @if (!disableArrow) {
+    <div [class]="'arrow ' + 'v-' + position[1] + ' h-' + position[0]"></div>
+    } -->
     <ng-content></ng-content>
   </div>
 </ng-template>

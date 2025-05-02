@@ -1,40 +1,104 @@
 // Every p tag inside div with example-$ will have margin bottom 0
 
-p {
-  margin-bottom: 0;
+* {
+  box-sizing: border-box;
 }
 
-.example-1 {
-  position: fixed;
-  margin: 20px;
-  top: 0;
-  left: 0;
+.popover-examples {
+  position: relative;
+  height: 200vh;
+  width: 100%;
+  p {
+    margin-bottom: 0;
+  }
+
+  .example-1 {
+    position: absolute;
+    margin: 20px;
+    top: 0;
+    left: 0;
+  }
+
+  .example-2 {
+    position: absolute;
+    margin: 20px;
+    top: 0;
+    right: 0;
+  }
+
+  .example-3 {
+    position: absolute;
+    margin: 20px;
+    bottom: 0;
+    left: 0;
+  }
+  .example-4 {
+    position: absolute;
+    margin: 20px;
+    bottom: 0;
+    right: 0;
+  }
+
+  .example-5 {
+    position: absolute;
+    margin: 20px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
 
-.example-2 {
-  position: fixed;
-  margin: 20px;
-  top: 0;
-  right: 0;
+.pro-popover-examples {
+  margin: 2rem 0;
+  padding: 1rem;
+  border: 1px solid #eee;
+  border-radius: 4px;
+
+  margin-top: 200vh;
+  margin-bottom: 200vh;
+  width: 100vw;
+  margin-left: 200vw;
+  margin-right: 200vw;
+
+  h2 {
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .example-row {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+
+    .example {
+      margin: 1rem;
+      text-align: center;
+
+      button {
+        padding: 0.5rem 1rem;
+        background-color: #4a90e2;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #3a80d2;
+        }
+      }
+    }
+  }
 }
 
-.example-3 {
-  position: fixed;
-  margin: 20px;
-  bottom: 0;
-  left: 0;
-}
-.example-4 {
-  position: fixed;
-  margin: 20px;
-  bottom: 0;
-  right: 0;
-}
+// Custom popover styling
+:host ::ng-deep .custom-popover {
+  .pro-popover-container {
+    background-color: #2c3e50;
+    color: white;
 
-.example-5 {
-  position: fixed;
-  margin: 20px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+    .arrow {
+      background-color: #2c3e50;
+    }
+  }
 }

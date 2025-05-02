@@ -10,6 +10,7 @@ import { faker } from '@faker-js/faker';
 import { SimpleGridComponent } from './simple-grid/simple-grid/simple-grid.component';
 import { OvPortalUiComponent } from './libs/ov-portal-ui/src';
 import { PopoverComponent } from './libs/popover/src';
+import { ProPopoverComponent } from './libs/pro-popover/pro-popover.component';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +20,7 @@ import { PopoverComponent } from './libs/popover/src';
     SimpleGridComponent,
     OvPortalUiComponent,
     PopoverComponent,
+    ProPopoverComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

@@ -1,0 +1,12 @@
+<ng-template #popoverTemplate>
+  <div
+    class="pro-popover-container"
+    [class.with-arrow]="showArrow"
+    [style.max-width]="contentMaxWidth"
+  >
+    <div *ngIf="showArrow" class="arrow" #arrowElement></div>
+    <div class="pro-popover-content">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</ng-template>
