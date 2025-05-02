@@ -1,0 +1,28 @@
+<div class="ov-portal-container">
+  <div
+    class="ov-portal-position-box"
+    [ngStyle]="(positionBoxStyles$ | async) || positionBoxStyles"
+  >
+    <div
+      class="ov-portal-overlay-content"
+      [ngClass]="
+        (shouldInvertPosition$ | async) || shouldInvertPosition
+          ? 'isInverted'
+          : ''
+      "
+    >
+      <ng-template [cdkPortalOutlet]="portalInfo?.portalContent"></ng-template>
+    </div>
+  </div>
+</div>
+<div class="scroll-container" *ngIf="canShowScrollToTopButton">
+  <button
+    id="scrollToTopBtn"
+    title="Go To Top"
+    type="button"
+    class="btn btn-primary"
+    (click)="scrollToTop()"
+  >
+    <i aria-hidden="true" class="fa fa-arrow-up"></i>
+  </button>
+</div>

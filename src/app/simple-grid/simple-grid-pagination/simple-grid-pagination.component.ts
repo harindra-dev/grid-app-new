@@ -12,11 +12,12 @@ import { MatSelectModule } from '@angular/material/select';
 
 import { SimpleGridComponent } from '../simple-grid/simple-grid.component';
 import { CommonModule } from '@angular/common';
+import { OvTypeAheadComponent } from '../../libs/ov-type-ahead/src/lib/ov-type-ahead/ov-type-ahead.component';
 
 @Component({
   selector: 'app-simple-grid-pagination',
   standalone: true,
-  imports: [CommonModule, MatSelectModule],
+  imports: [CommonModule, MatSelectModule, OvTypeAheadComponent],
   templateUrl: './simple-grid-pagination.component.html',
   styleUrl: './simple-grid-pagination.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

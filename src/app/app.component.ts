@@ -8,11 +8,18 @@ import {
 } from './simple-grid';
 import { faker } from '@faker-js/faker';
 import { SimpleGridComponent } from './simple-grid/simple-grid/simple-grid.component';
+import { OvPortalUiComponent } from './libs/ov-portal-ui/src';
+import { PopoverComponent } from './libs/popover/src';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [SimpleGridModule, SimpleGridComponent],
+  imports: [
+    SimpleGridModule,
+    SimpleGridComponent,
+    OvPortalUiComponent,
+    PopoverComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

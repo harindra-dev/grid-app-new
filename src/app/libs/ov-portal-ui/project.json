@@ -1,0 +1,20 @@
+{
+  "name": "ov-portal-ui",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/oneview/shared/ui/ov-portal-ui/src",
+  "prefix": "lib",
+  "projectType": "library",
+  "tags": ["type:ui","scope:oneview","team:oneview","framework:angular"],
+  "targets": {
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/oneview/shared/ui/ov-portal-ui/jest.config.ts"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

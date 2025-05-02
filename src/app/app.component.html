@@ -1,7 +1,7 @@
-<app-simple-grid
+<!-- <app-simple-grid
   [columnsData]="columnsData"
   [dataRows]="dataRows"
-  [pageSize]="15"
+  [pageSize]="10"
   [totalRows]="totalRows"
   gridTitle="Students Results"
   [isFilterEnabled]="true"
@@ -20,4 +20,25 @@
   <app-simple-grid-pagination
     [targetGridRef]="sampleGrid"
   ></app-simple-grid-pagination>
-</app-simple-grid>
+</app-simple-grid> -->
+
+<!-- <lib-ov-portal-ui></lib-ov-portal-ui> -->
+
+<div class="popover-examples">
+  <div class="example-1">
+    <i class="bi bi-info-circle"></i>
+    <lib-popover>
+      <ng-template #popoverContent>
+        <div class="popover-content">
+          <h3>Popover Title</h3>
+          <p>This is the content of the popover.</p>
+        </div>
+      </ng-template>
+      <button class="btn btn-primary">Click me</button>
+    </lib-popover>
+  </div>
+  <div class="example-2"></div>
+  <div class="example-3"></div>
+  <div class="example-4"></div>
+  <div class="example-5"></div>
+</div>

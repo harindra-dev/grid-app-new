@@ -2,14 +2,15 @@
   <div class="d-flex">
     Items per page
     <div class="inline-block" style="display: inline-block; width: 80px">
-      <mat-select
+      <lib-ov-type-ahead></lib-ov-type-ahead>
+      <!-- <mat-select
         [value]="pageSize()"
         (valueChange)="handlePageSizeChange($event)"
       >
         @for (page of pageSizes(); track page) {
         <mat-option [value]="page">{{ page }}</mat-option>
         }
-      </mat-select>
+      </mat-select> -->
     </div>
     &nbsp; Showing {{ this.targetGridRef.firstRowInPage() }} -
     {{ this.targetGridRef.lastRowInPage() }} of

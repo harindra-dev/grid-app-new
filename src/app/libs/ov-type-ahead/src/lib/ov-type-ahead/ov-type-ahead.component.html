@@ -1,0 +1,85 @@
+<span [attr.data-ac-option-comp]="typeAheadComponentId">
+  <ng-container *cdkPortal>
+    <div
+      class="auto-complete-options"
+      [id]="'ac-options-list-' + typeAheadComponentId"
+      [attr.data-ac-options-list]="typeAheadComponentId"
+      *ngIf="
+        ((acOptionsVisibility | async) === false || !isAcOptionsHidden) &&
+        filteredOptions as options
+      "
+      [ngClass]="{ hasIcon: hasIcon }"
+      [ngStyle]="
+        (optionsContainerPosition$ | async) || optionsContainerPosition
+      "
+    >
+      <ng-container *ngIf="hasCdkScroller">
+        <cdk-virtual-scroll-viewport [itemSize]="10" class="dropdown-viewport">
+          <span
+            class="auto-complete-option"
+            *cdkVirtualFor="let option of options; let i = index"
+            [attr.data-option-id]="typeAheadComponentId + '-option-' + i"
+            [ngClass]="{
+              isFocused: i === acOptionInFocus,
+            }"
+            (click)="selectAutoCompleteOption(i)"
+            ><span class="icon-placeholder" *ngIf="hasIcon"
+              ><i
+                class="fa mr-2 icon-input"
+                [ngClass]="'fa-' + option['icon']"
+              ></i></span
+            >{{ option[valueName] }}</span
+          >
+        </cdk-virtual-scroll-viewport>
+      </ng-container>
+      <ng-container *ngIf="!hasCdkScroller">
+        <span
+          class="auto-complete-option"
+          *ngFor="let option of options; let i = index"
+          [attr.data-option-id]="typeAheadComponentId + '-option-' + i"
+          [ngClass]="{
+            isFocused: i === acOptionInFocus,
+          }"
+          (click)="selectAutoCompleteOption(i)"
+          ><span class="icon-placeholder" *ngIf="hasIcon"
+            ><i
+              class="fa mr-2 icon-input"
+              [ngClass]="'fa-' + option['icon']"
+            ></i></span
+          >{{ option[valueName] }}</span
+        >
+      </ng-container>
+    </div>
+  </ng-container>
+  <i
+    class="bi icon-input"
+    aria-hidden="true"
+    *ngIf="shouldShowIcon && hasIcon"
+    [ngClass]="'bi-' + ((iconDisplay$ | async) || iconDisplay)"
+  ></i>
+  <div class="input-chev-container">
+    <input
+      [attr.tabindex]="tabindex"
+      [formControl]="control"
+      class="input-field form-control"
+      type="text"
+      [placeholder]="placeholder"
+      [class.input-nored]="isState"
+      cignaInput
+      [attr.disabled]="isDisabled === true ? true : null"
+      (keydown)="handleKeyDown($event)"
+      (keyup)="setControlValue($event.key, control.value)"
+      (focus)="handleFocus()"
+      data-test-id="list-option-selections"
+      #input
+      [attr.data-ac-options-input]="typeAheadComponentId"
+    />
+    <i
+      class="bi bi-chevron-down"
+      *ngIf="isDropDownRequired"
+      (click)="handleDropdownIconClick()"
+      [attr.disabled]="isDisabled === true ? true : null"
+    ></i>
+  </div>
+  <!-- <i #closePanelTrigger class="sr-only">Close</i> -->
+</span>
